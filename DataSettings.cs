@@ -8,7 +8,7 @@ namespace Shell
     class DataSettings
     {
         protected static DataSettings settings;
-        public List<ItemSettings> items { get; set; }
+        public List<ItemSettings> Items { get; set; }
 
         /// <summary>
         /// Получение объета с данными
@@ -29,7 +29,8 @@ namespace Shell
         {
             ItemSettings setting = new ItemSettings();
             setting.text = "Тестовая кнопка";
-            this.items.Add(setting);
+            setting.img = "/home/boris/Изображения/!test/1200_2.jpg";
+            this.Items.Add(setting);
         }
 
         /// <summary>
@@ -42,13 +43,15 @@ namespace Shell
 
         public DataSettings()
         {
+            this.Items = new List<ItemSettings>();
             this.LoadData();
         }
     }
 
     public class ItemSettings
-    {      
+    {
         public string text { get; set; }
         public string exeFile { get; set; }
+        public string img { get; set; }
     }
 }

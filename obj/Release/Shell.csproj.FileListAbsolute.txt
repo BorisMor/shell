@@ -1,0 +1,8 @@
+/home/boris/project/shell/bin/Release/Shell.exe
+/home/boris/project/shell/bin/Release/Shell.pdb
+/home/boris/project/shell/obj/Release/Shell.frmMain.resources
+/home/boris/project/shell/obj/Release/Shell.Properties.Resources.resources
+/home/boris/project/shell/obj/Release/Shell.csproj.GenerateResource.cache
+/home/boris/project/shell/obj/Release/Shell.csproj.CoreCompileInputs.cache
+/home/boris/project/shell/obj/Release/Shell.exe
+/home/boris/project/shell/obj/Release/Shell.pdb

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Shell
 {
@@ -21,9 +22,9 @@ namespace Shell
         private void FrmMain_Load(object sender, EventArgs e)
         {
             DataSettings data = DataSettings.GetData();
-            for (int i = 0; i < data.items.Count; i++)
+            for (int i = 0; i < data.Items.Count; i++)
             {
-                this.createButton(data.items[i]);
+                this.createButton(data.Items[i]);
             }
         }
 
@@ -32,6 +33,13 @@ namespace Shell
             Button button = new Button();
             button.Text = item.text;
             button.Parent = this;
+            button.Width = 1000;
+            button.Height = 1000;
+
+            if (File.Exists(item.img))
+            {
+                button.BackgroundImage = Image.FromFile(item.img);
+            }
         }
     }
 }
