@@ -33,12 +33,14 @@ namespace Shell
             Button button = new Button();
             button.Text = item.text;
             button.Parent = this;
-            button.Width = 1000;
-            button.Height = 1000;
+            button.Width = 849;
+            button.Height = 489;
+            // button.Anchor = 
 
             if (File.Exists(item.img))
             {
                 button.BackgroundImage = Image.FromFile(item.img);
+                // button.BackgroundImageLayout
             }
         }
     }

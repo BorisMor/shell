@@ -29,7 +29,8 @@ namespace Shell
         {
             ItemSettings setting = new ItemSettings();
             setting.text = "Тестовая кнопка";
-            setting.img = "/home/boris/Изображения/!test/1200_2.jpg";
+            //setting.img = "/home/boris/Изображения/!test/1200_2.jpg";
+            setting.img = @"C:\Users\User\Pictures\Saved Pictures\icon_gampad.jpg";
             this.Items.Add(setting);
         }
 
