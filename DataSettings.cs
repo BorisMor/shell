@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
+using System.IO;
 
 namespace Shell
 {
@@ -27,11 +27,15 @@ namespace Shell
 
         private void FakeData()
         {
-            ItemSettings setting = new ItemSettings();
-            setting.text = "Тестовая кнопка";
-            //setting.img = "/home/boris/Изображения/!test/1200_2.jpg";
-            setting.img = @"C:\Users\User\Pictures\Saved Pictures\icon_gampad.jpg";
-            this.Items.Add(setting);
+            for(int i = 0; i < 5; i++)
+            {
+                ItemSettings setting = new ItemSettings();
+                setting.text = "Тестовая кнопка " + (i + 1);
+                //setting.img = "/home/boris/Изображения/!test/1200_2.jpg";
+                setting.img = @"C:\Users\User\Pictures\Saved Pictures\icon_gampad.jpg";
+
+                this.Items.Add(setting);
+            }
         }
 
         /// <summary>
@@ -47,12 +51,84 @@ namespace Shell
             this.Items = new List<ItemSettings>();
             this.LoadData();
         }
+
+        public int Count
+        {
+            get
+            {
+                return this.Items.Count;
+            }
+        }
     }
 
     public class ItemSettings
     {
+        private static string startupPath;
+
+
+        protected string PathWork
+        {
+            get
+            {
+                if (startupPath == null)
+                {
+                    startupPath = System.IO.Directory.GetCurrentDirectory();
+                }
+
+                return startupPath;
+            }
+        }
+
+        protected string GetWorkPath(string path)
+        {
+            if (String.IsNullOrEmpty(path))
+            {
+                throw new System.Exception("Не указан файл");
+            }
+
+            if (File.Exists(path))
+            {
+                return path;
+            }
+
+            string newPath = this.PathWork + path;
+            if (File.Exists(newPath)) {
+                return newPath;
+            }
+
+            throw new System.Exception("Файл не найден: " + path);
+        }
+
+        public void Run()
+        {
+            if (String.IsNullOrEmpty(this.exeFile))
+            {
+                throw new System.Exception("Не указаан файл для запуска");
+            }
+
+            string executable = this.GetWorkPath(this.exeFile);
+
+            Process process = new Process();
+            process.StartInfo.FileName = executable;
+            process.StartInfo.Arguments = this.exeArguments;
+            process.StartInfo.ErrorDialog = true;
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
+            process.Start();
+            process.WaitForExit();
+        }
+
+        /// <summary>
+        /// Рабочий путь до изображения
+        /// </summary>
+        /// <returns>The work image.</returns>
+        public string getWorkPathImg()
+        {
+            return this.GetWorkPath(this.img);
+        }
+
         public string text { get; set; }
         public string exeFile { get; set; }
+        public string exeArguments { get; set; }
         public string img { get; set; }
     }
 }
