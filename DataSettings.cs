@@ -7,8 +7,22 @@ namespace Shell
 {
     class DataSettings
     {
+        private static string startupPath;
         protected static DataSettings settings;
         public List<ItemSettings> Items { get; set; }
+
+        public static string PathWork
+        {
+            get
+            {
+                if (startupPath == null)
+                {
+                    startupPath = System.IO.Directory.GetCurrentDirectory();
+                }
+
+                return startupPath;
+            }
+        }
 
         /// <summary>
         /// Получение объета с данными
@@ -32,7 +46,7 @@ namespace Shell
                 ItemSettings setting = new ItemSettings();
                 setting.text = "Тестовая кнопка " + (i + 1);
                 //setting.img = "/home/boris/Изображения/!test/1200_2.jpg";
-                setting.img = @"C:\Users\User\Pictures\Saved Pictures\icon_gampad.jpg";
+                setting.img = @"icon_gampad.jpg";
 
                 this.Items.Add(setting);
             }
@@ -42,7 +56,7 @@ namespace Shell
         /// Загражаем параметры
         /// </summary>
         public void LoadData()
-        {
+        {          
             this.FakeData();
         }
 
@@ -63,21 +77,6 @@ namespace Shell
 
     public class ItemSettings
     {
-        private static string startupPath;
-
-
-        protected string PathWork
-        {
-            get
-            {
-                if (startupPath == null)
-                {
-                    startupPath = System.IO.Directory.GetCurrentDirectory();
-                }
-
-                return startupPath;
-            }
-        }
 
         protected string GetWorkPath(string path)
         {
@@ -91,7 +90,7 @@ namespace Shell
                 return path;
             }
 
-            string newPath = this.PathWork + path;
+            string newPath = DataSettings.PathWork + path;
             if (File.Exists(newPath)) {
                 return newPath;
             }

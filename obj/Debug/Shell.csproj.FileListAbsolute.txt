@@ -15,3 +15,4 @@ C:\Users\User\source\repos\Shell\obj\Debug\Shell.csproj.GenerateResource.cache
 C:\Users\User\source\repos\Shell\obj\Debug\Shell.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\Shell\obj\Debug\Shell.exe
 C:\Users\User\source\repos\Shell\obj\Debug\Shell.pdb
+C:\Users\User\source\repos\Shell\obj\Debug\Shell.csprojAssemblyReference.cache
